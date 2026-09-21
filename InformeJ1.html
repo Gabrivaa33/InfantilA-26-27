@@ -617,13 +617,13 @@
 
   <div class="header-informe">
     <h1>Informe Jornada 1</h1>
-    <div class="resultado-principal">Esc. Fut. Estudiantes Alcorcón - EFMO Boadilla</div>
+    <div class="resultado-principal">SAD Colegio Miramadrid - Paracuellos &#039;A&#039; - EFMO Boadilla &#039;A&#039;</div>
   </div>
 
   <!-- Alineación Probable -->
   <div class="seccion">
     <h3>Alineación Probable</h3>
-    <div class="formacion-titulo">5-3-2</div>
+    <div class="formacion-titulo">3-4-3</div>
 
     <div class="field-container-responsive">
       <div class="field-responsive">
@@ -640,61 +640,61 @@
       const playersProbable = {
         "portero": [
                 {
-                        "number": "1",
-                        "name": "Gabri"
+                        "number": "-",
+                        "name": "Álvaro E."
                 }
         ],
         "defensas": [
                 {
-                        "number": "7",
-                        "name": "Rodri"
+                        "number": "-",
+                        "name": "Rafa"
                 },
                 {
-                        "number": "16",
-                        "name": "Juanmi"
+                        "number": "-",
+                        "name": "Pablo"
                 },
                 {
-                        "number": "17",
-                        "name": "Héctor"
-                },
-                {
-                        "number": "5",
-                        "name": "David"
-                },
-                {
-                        "number": "11",
-                        "name": "Carlos"
+                        "number": "-",
+                        "name": "Diego"
                 }
         ],
         "mediocentros": [
                 {
-                        "number": "21",
-                        "name": "D.  Serrano"
+                        "number": "-",
+                        "name": "Víctor"
                 },
                 {
-                        "number": "8",
-                        "name": "J. Ogayar"
+                        "number": "-",
+                        "name": "Oliver"
                 },
                 {
-                        "number": "10",
-                        "name": "Kito"
+                        "number": "-",
+                        "name": "M. Arjonilla"
+                },
+                {
+                        "number": "-",
+                        "name": "Jorge"
                 }
         ],
         "delanteros": [
                 {
-                        "number": "25",
-                        "name": "Dani B."
+                        "number": "-",
+                        "name": "Thiago"
                 },
                 {
-                        "number": "9",
-                        "name": "S. Griñán"
+                        "number": "-",
+                        "name": "Sergio"
+                },
+                {
+                        "number": "-",
+                        "name": "Erik"
                 }
         ]
 };
       
       // Configuraciones de formaciones
       const formations = {
-        '5-3-2': [
+        '3-4-3': [
           playersProbable.delanteros,
           playersProbable.mediocentros,
           playersProbable.defensas,
@@ -707,7 +707,7 @@
         const formationContainer = document.getElementById('formation-container-probable');
         formationContainer.innerHTML = '';
 
-        const formation = formations[formationKey] || formations['5-3-2'];
+        const formation = formations[formationKey] || formations['3-4-3'];
 
         formation.forEach(rowPlayers => {
           const row = document.createElement('div');
@@ -730,7 +730,7 @@
       }
 
       // Renderizar formación para alineación probable
-      renderFormationProbable('5-3-2'); 
+      renderFormationProbable('3-4-3'); 
     </script>
   </div>
 </div>
