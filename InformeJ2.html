@@ -617,7 +617,7 @@
 
   <div class="header-informe">
     <h1>Informe Jornada 2</h1>
-    <div class="resultado-principal">EFMO Boadilla &#039;A&#039; - AD Torrejón CF &#039;A&#039;</div>
+    <div class="resultado-principal">EFMO Boadilla &#039;A&#039; 0-4 AD Torrejón CF &#039;A&#039;</div>
   </div>
 
   <!-- Alineación Probable -->
@@ -733,6 +733,571 @@
       renderFormationProbable('3-4-3'); 
     </script>
   </div>
+  <!-- Alineación Confirmada -->
+  <div class="seccion">
+    <h3>Alineación Confirmada</h3>
+
+    <div class="container-responsive">
+      <div class="header-responsive">
+        <div class="team-name-responsive">EFMO Boadilla &#039;A&#039;</div>
+        <div class="formation-responsive">3-4-3</div>
+      </div>
+
+      <div class="content-responsive">
+        <div class="field-container-responsive">
+          <div class="field-responsive">
+            <div class="grass-pattern-responsive"></div>
+
+            <div class="players-formation-responsive" id="formation-container-confirmada">
+              <!-- La formación se genera automáticamente -->
+            </div>
+          </div>
+        </div>
+
+        <div class="bench-responsive">
+          <div class="bench-title-responsive">Banquillo</div>
+          <div id="bench-container">
+            <!-- El banquillo se genera automáticamente -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Datos de los jugadores organizados por posición - ALINEACIÓN CONFIRMADA
+      const playersConfirmada = {
+        "portero": [
+                {
+                        "number": "1",
+                        "name": "Álvaro E.",
+                        "rating": "7,2",
+                        "goals": 0,
+                        "assists": 0,
+                        "cards": null
+                }
+        ],
+        "defensas": [
+                {
+                        "number": "12",
+                        "name": "Rafa",
+                        "rating": "6,8",
+                        "goals": 0,
+                        "assists": 0,
+                        "cards": null
+                },
+                {
+                        "number": "5",
+                        "name": "Diego",
+                        "rating": "6,7",
+                        "goals": 0,
+                        "assists": 0,
+                        "cards": null
+                },
+                {
+                        "number": "6",
+                        "name": "Pablo",
+                        "rating": "7,0",
+                        "goals": 0,
+                        "assists": 0,
+                        "cards": null
+                }
+        ],
+        "mediocentros": [
+                {
+                        "number": "4",
+                        "name": "Víctor",
+                        "rating": "6,3",
+                        "goals": 0,
+                        "assists": 0,
+                        "cards": null
+                },
+                {
+                        "number": "16",
+                        "name": "Oliver",
+                        "rating": "6,4",
+                        "goals": 0,
+                        "assists": 0,
+                        "cards": null
+                },
+                {
+                        "number": "14",
+                        "name": "M. Arjonilla",
+                        "rating": "6,7",
+                        "goals": 0,
+                        "assists": 0,
+                        "cards": null
+                },
+                {
+                        "number": "17",
+                        "name": "Jorge",
+                        "rating": "6,7",
+                        "goals": 0,
+                        "assists": 0,
+                        "cards": null
+                }
+        ],
+        "delanteros": [
+                {
+                        "number": "7",
+                        "name": "Fran",
+                        "rating": "6,7",
+                        "goals": 0,
+                        "assists": 0,
+                        "cards": null
+                },
+                {
+                        "number": "19",
+                        "name": "Sergio",
+                        "rating": "6,6",
+                        "goals": 0,
+                        "assists": 0,
+                        "cards": null
+                },
+                {
+                        "number": "20",
+                        "name": "Edu",
+                        "rating": "6,3",
+                        "goals": 0,
+                        "assists": 0,
+                        "cards": null
+                }
+        ]
+};
+
+      // Datos del banquillo
+      const benchPlayers = [
+        {
+                "number": "23",
+                "name": "Adri",
+                "rating": "6,8",
+                "goals": 0,
+                "assists": 0,
+                "cards": null
+        },
+        {
+                "number": "2",
+                "name": "Nico",
+                "rating": "6,6",
+                "goals": 0,
+                "assists": 0,
+                "cards": null
+        },
+        {
+                "number": "15",
+                "name": "David",
+                "rating": "6,3",
+                "goals": 0,
+                "assists": 0,
+                "cards": null
+        },
+        {
+                "number": "18",
+                "name": "Thiago",
+                "rating": "6,3",
+                "goals": 0,
+                "assists": 0,
+                "cards": null
+        },
+        {
+                "number": "9",
+                "name": "Beltrán Ga.",
+                "rating": "6,7",
+                "goals": 0,
+                "assists": 0,
+                "cards": null
+        },
+        {
+                "number": "3",
+                "name": "J. Macipe",
+                "rating": "6,0",
+                "goals": 0,
+                "assists": 0,
+                "cards": null
+        }
+];
+
+      // Configuraciones de formaciones
+      const formationsConfirmada = {
+        '3-4-3': [
+          playersConfirmada.delanteros,
+          playersConfirmada.mediocentros,
+          playersConfirmada.defensas,
+          playersConfirmada.portero
+        ]
+      };
+
+      // Función para aplicar el color correcto según la puntuación
+      function applyRatingColor(element, rating) {
+        if (rating === '-' || !rating) {
+          element.classList.add('score-gray');
+          return;
+        }
+
+        const numericRating = parseFloat(String(rating).replace(',', '.'));
+        if (isNaN(numericRating)) {
+          element.classList.add('score-gray');
+          return;
+        }
+
+        if (numericRating >= 9.0) {
+          element.classList.add('score-darkblue');
+        } else if (numericRating >= 8.0) {
+          element.classList.add('score-blue');
+        } else if (numericRating >= 7.0) {
+          element.classList.add('score-green');
+        } else if (numericRating >= 6.0) {
+          element.classList.add('score-yellow');
+        } else if (numericRating >= 3.0) {
+          element.classList.add('score-red');
+        } else {
+          element.classList.add('score-gray');
+        }
+      }
+
+      // Función para crear HTML de estadísticas
+      function createStatsHTML(goals, assists, cards) {
+        let statsHTML = '';
+        let cardsHTML = '';
+        
+        // HTML para goles y asistencias (a la derecha)
+        if (goals > 0 || assists > 0) {
+          const goalsHTML = goals > 0 ? 
+            `<div class="player-goals-row-responsive">${'⚽'.repeat(goals)}</div>` : '';
+          
+          const assistsHTML = assists > 0 ? 
+            `<div class="player-assists-row-responsive">${'🅰️'.repeat(assists)}</div>` : '';
+          
+          statsHTML = `
+            <div class="player-stats-side-responsive">
+              ${goalsHTML}
+              ${assistsHTML}
+            </div>
+          `;
+        }
+        
+        // HTML para tarjetas (a la izquierda)
+        if (cards) {
+          cardsHTML = `
+            <div class="player-cards-side-responsive">
+              <div class="player-cards-row-responsive">${cards}</div>
+            </div>
+          `;
+        }
+        
+        return statsHTML + cardsHTML;
+      }
+
+      // Función para renderizar una formación
+      function renderFormationConfirmada(formationKey) {
+        const formationContainer = document.getElementById('formation-container-confirmada');
+        formationContainer.innerHTML = '';
+
+        const formation = formationsConfirmada[formationKey] || formationsConfirmada['3-4-3'];
+
+        formation.forEach(rowPlayers => {
+          const row = document.createElement('div');
+          row.className = 'player-row-responsive';
+
+          rowPlayers.forEach(player => {
+            const playerElement = document.createElement('div');
+            playerElement.className = 'player-responsive';
+
+            const statsHTML = createStatsHTML(player.goals || 0, player.assists || 0, player.cards);
+
+            playerElement.innerHTML = `
+              <div class="player-with-stats-responsive">
+                <div class="player-main-info-responsive">
+                  <div class="player-circle-responsive">${player.number}</div>
+                  <div class="player-rating-responsive">${player.rating || '-'}</div>
+                  <div class="player-name-responsive">${player.name}</div>
+                </div>
+                ${statsHTML}
+              </div>
+            `;
+
+            row.appendChild(playerElement);
+          });
+
+          formationContainer.appendChild(row);
+        });
+
+        // Aplicar colores a los ratings
+        document.querySelectorAll('.player-rating-responsive').forEach(ratingElement => {
+          const rating = ratingElement.textContent;
+          applyRatingColor(ratingElement, rating);
+        });
+
+        const formationDisplay = document.querySelector('.formation-responsive');
+        if (formationDisplay) {
+          formationDisplay.textContent = formationKey;
+        }
+      }
+
+      // Función para renderizar el banquillo
+      function renderBench() {
+        const benchContainer = document.getElementById('bench-container');
+        if (!benchContainer) return;
+        benchContainer.innerHTML = '';
+
+        benchPlayers.forEach(player => {
+          const benchPlayerElement = document.createElement('div');
+          benchPlayerElement.className = 'bench-player-responsive';
+
+          let statsHTML = '';
+          if ((player.goals && player.goals > 0) || (player.assists && player.assists > 0) || player.cards) {
+            const goalsText = (player.goals && player.goals > 0) ? '⚽'.repeat(player.goals) : '';
+            const assistsText = (player.assists && player.assists > 0) ? '🅰️'.repeat(player.assists) : '';
+            const cardsText = player.cards ? player.cards : '';
+            
+            statsHTML = `
+              <div class="bench-player-stats-responsive">
+                ${cardsText}${goalsText}${assistsText}
+              </div>
+            `;
+          }
+
+          benchPlayerElement.innerHTML = `
+            <div class="bench-player-info-responsive">
+              <div class="bench-player-number-responsive">${player.number}</div>
+              <div class="bench-player-name-responsive">${player.name}</div>
+            </div>
+            ${statsHTML}
+            <div class="bench-player-rating-responsive">${player.rating || '-'}</div>
+          `;
+
+          benchContainer.appendChild(benchPlayerElement);
+        });
+
+        // Aplicar colores a los ratings del banquillo
+        document.querySelectorAll('.bench-player-rating-responsive').forEach(ratingElement => {
+          const rating = ratingElement.textContent;
+          applyRatingColor(ratingElement, rating);
+        });
+      }
+
+      renderFormationConfirmada('3-4-3');
+      renderBench();
+    </script>
+  </div>
+
+  <!-- Goles: Sin goles a favor registrados o sección omitida -->
+
+  <!-- Cambios -->
+  <div class="seccion">
+    <h3>Cambios Realizados</h3>
+    <div class="cambios-lista">
+      <div class="cambio">
+        <span class="minuto">26'</span>
+        <div class="jugadores-cambio">
+          <span>Pablo</span>
+          <span class="flecha">→</span>
+          <span>Adri</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">26'</span>
+        <div class="jugadores-cambio">
+          <span>Jorge</span>
+          <span class="flecha">→</span>
+          <span>Nico</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">26'</span>
+        <div class="jugadores-cambio">
+          <span>Oliver</span>
+          <span class="flecha">→</span>
+          <span>Beltrán Ga.</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">26'</span>
+        <div class="jugadores-cambio">
+          <span>Edu</span>
+          <span class="flecha">→</span>
+          <span>Thiago</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">26'</span>
+        <div class="jugadores-cambio">
+          <span>Sergio</span>
+          <span class="flecha">→</span>
+          <span>J. Macipe</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">35'</span>
+        <div class="jugadores-cambio">
+          <span>Víctor</span>
+          <span class="flecha">→</span>
+          <span>David</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">49'</span>
+        <div class="jugadores-cambio">
+          <span>David</span>
+          <span class="flecha">→</span>
+          <span>Víctor</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">49'</span>
+        <div class="jugadores-cambio">
+          <span>Fran</span>
+          <span class="flecha">→</span>
+          <span>Oliver</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">49'</span>
+        <div class="jugadores-cambio">
+          <span>J. Macipe</span>
+          <span class="flecha">→</span>
+          <span>Sergio</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">57'</span>
+        <div class="jugadores-cambio">
+          <span>Adri</span>
+          <span class="flecha">→</span>
+          <span>Pablo</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">57'</span>
+        <div class="jugadores-cambio">
+          <span>Nico</span>
+          <span class="flecha">→</span>
+          <span>Jorge</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">57'</span>
+        <div class="jugadores-cambio">
+          <span>Thiago</span>
+          <span class="flecha">→</span>
+          <span>Edu</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Once Final -->
+  <div class="seccion">
+    <h3>Once Final</h3>
+    <div class="formacion-titulo">3-4-3</div>
+
+    <div class="field-container-responsive">
+      <div class="field-responsive">
+        <div class="grass-pattern-responsive"></div>
+
+        <div class="players-formation-responsive" id="formation-container-final">
+          <!-- La formación se genera automáticamente -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Datos de los jugadores organizados por posición - ONCE FINAL
+      const playersFinal = {
+        "portero": [
+                {
+                        "number": "1",
+                        "name": "Álvaro E."
+                }
+        ],
+        "defensas": [
+                {
+                        "number": "12",
+                        "name": "Rafa"
+                },
+                {
+                        "number": "5",
+                        "name": "Diego"
+                },
+                {
+                        "number": "6",
+                        "name": "Pablo"
+                }
+        ],
+        "mediocentros": [
+                {
+                        "number": "4",
+                        "name": "Víctor"
+                },
+                {
+                        "number": "16",
+                        "name": "Oliver"
+                },
+                {
+                        "number": "14",
+                        "name": "M. Arjonilla"
+                },
+                {
+                        "number": "17",
+                        "name": "Jorge"
+                }
+        ],
+        "delanteros": [
+                {
+                        "number": "9",
+                        "name": "Beltrán Ga."
+                },
+                {
+                        "number": "19",
+                        "name": "Sergio"
+                },
+                {
+                        "number": "20",
+                        "name": "Edu"
+                }
+        ]
+};
+
+      // Configuraciones de formaciones
+      const formationsFinal = {
+        '3-4-3': [
+          playersFinal.delanteros,
+          playersFinal.mediocentros,
+          playersFinal.defensas,
+          playersFinal.portero
+        ]
+      };
+
+      // Función para renderizar una formación
+      function renderFormationFinal(formationKey) {
+        const formationContainer = document.getElementById('formation-container-final');
+        formationContainer.innerHTML = '';
+
+        const formation = formationsFinal[formationKey] || formationsFinal['3-4-3'];
+
+        formation.forEach(rowPlayers => {
+          const row = document.createElement('div');
+          row.className = 'player-row-responsive';
+
+          rowPlayers.forEach(player => {
+            const playerElement = document.createElement('div');
+            playerElement.className = 'player-responsive';
+
+            playerElement.innerHTML = `
+              <div class="player-circle-responsive">${player.number}</div>
+              <div class="player-name-responsive">${player.name}</div>
+            `;
+
+            row.appendChild(playerElement);
+          });
+
+          formationContainer.appendChild(row);
+        });
+      }
+
+      // Renderizar formación para once final
+      renderFormationFinal('3-4-3'); 
+    </script>
+  </div>
+
 </div>
 
 </body>
