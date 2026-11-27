@@ -920,7 +920,7 @@
                 "rating": "6,7",
                 "goals": 0,
                 "assists": 0,
-                "cards": null
+                "cards": "🟨"
         }
 ];
 
@@ -1274,6 +1274,7 @@
         const formation = formationsFinal[formationKey] || formationsFinal['3-4-3'];
 
         formation.forEach(rowPlayers => {
+          if (!rowPlayers || rowPlayers.length === 0) return;
           const row = document.createElement('div');
           row.className = 'player-row-responsive';
 
